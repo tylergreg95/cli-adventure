@@ -44,12 +44,15 @@ class Warrior(Player):
 
     def special_attack(self, target: Enemy):
         if self.mana >= self.special_attack_mana_cost:
+            self.mana -= self.special_attack_mana_cost
             print("Attacking: " + str(target))
-            target.take_damage(self.strength)
+            target.take_damage(self.strength + self.intellect)
             for i in range(5):
                 print('.')
                 time.sleep(0.5)
             print(target)
+        else:
+            print("Not enough mana...")
     
     def heal(self):
         self.health += 2 * self.intellect
