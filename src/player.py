@@ -4,6 +4,11 @@ class Player:
     def __init__(self, name : str):
         self.name = name
         self.position = [0, 0]
+    
+    def move(self, direction : list[int]):
+        self.position[0] += direction[0]
+        self.position[1] += direction[1]
+
 
 class Warrior(Player):
     def __init__(self, name : str, strength : int, intellect : int, dexterity : int):
@@ -19,6 +24,7 @@ class Warrior(Player):
     
     def __repr__(self) -> str:
         return f'Name: {self.name} | Class: {self.class_name}\nSTR: {self.strength} | INT: {self.intellect} | DEX: {self.dexterity}\nHP: {self.health} | MP: {self.mana} | CRIT: {self.critical_chance}'
+    
     
     def take_damage(self, damage : int):
         self.health -= (damage - self.defense)
