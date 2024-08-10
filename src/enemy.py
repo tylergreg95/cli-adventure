@@ -1,3 +1,5 @@
+from time import sleep
+
 class Enemy:
     def __init__(self, name : str, health : int, defense : int):
         self.name = name

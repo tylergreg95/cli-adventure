@@ -1,4 +1,5 @@
 import enemy
+from os import system
 
 class Encounter:
     def __init__(self, code, player):
@@ -21,7 +22,7 @@ class ExitEncounter(Encounter):
     
     def play_encounter(self):
         print(f'You\'ve made it to the exit! Congratulations!\n{self.player}\n')
-        input("Press any key to exit the game...")
+        input("Press enter to exit the game...")
 
 class EnemyEncounter(Encounter):
     def __init__(self, code, player):

@@ -1,5 +1,6 @@
 from enemy import Enemy
 import time
+from os import system
 
 class Player:
     def __init__(self, name : str):
@@ -40,6 +41,7 @@ class Warrior(Player):
         for i in range(5):
                 print('.')
                 time.sleep(0.5)
+        system('clear')
         print(target)
 
     def special_attack(self, target: Enemy):
@@ -50,6 +52,7 @@ class Warrior(Player):
             for i in range(5):
                 print('.')
                 time.sleep(0.5)
+            system('clear')
             print(target)
         else:
             print("Not enough mana...")
