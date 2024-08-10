@@ -4,6 +4,7 @@ class Map:
     def __init__(self):
         self.cells = []
         self.entrance = []
+        self.exit = []
         with open('src/map.txt', 'r') as map_file:
             line = map_file.readline()
             row = 0
@@ -16,6 +17,9 @@ class Map:
                     if c == 'B':
                         self.entrance.append(row)
                         self.entrance.append(col)
+                    if c == 'E':
+                        self.exit.append(row)
+                        self.exit.append(col)
                     col += 1
                 row += 1
                 self.cells.append(col_cells)
