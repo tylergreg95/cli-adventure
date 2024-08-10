@@ -15,6 +15,14 @@ class EmptyRoomEncounter(Encounter):
     def play_encounter(self):
         print("\n\nThis is an empty room...\n\n")
 
+class ExitEncounter(Encounter):
+    def __init__(self, code, player):
+        super().__init__(code, player)
+    
+    def play_encounter(self):
+        print(f'You\'ve made it to the exit! Congratulations!\n{self.player}\n')
+        input("Press any key to exit the game...")
+
 class EnemyEncounter(Encounter):
     def __init__(self, code, player):
         super().__init__(code, player)

@@ -9,4 +9,7 @@ class Room:
                 self.encounter = encounter.EmptyRoomEncounter(code, player)
             
             case 'S':
-                self.encounter = encounter.EnemyEncounter('S', player)
+                self.encounter = encounter.EnemyEncounter(code, player)
+            
+            case 'E':
+                self.encounter = encounter.ExitEncounter(code, player)
