@@ -1,4 +1,5 @@
 from enemy import Enemy
+import time
 
 class Player:
     def __init__(self, name : str):
@@ -21,6 +22,7 @@ class Warrior(Player):
         self.mana = (10 + self.intellect) * 10
         self.critical_chance = float((1 + self.dexterity) * 1.2)
         self.defense = (3 + self.strength)
+        self.special_attack_mana_cost = 20
     
     def __repr__(self) -> str:
         return f'Name: {self.name} | Class: {self.class_name}\nSTR: {self.strength} | INT: {self.intellect} | DEX: {self.dexterity}\nHP: {self.health} | MP: {self.mana} | CRIT: {self.critical_chance}'
@@ -32,7 +34,22 @@ class Warrior(Player):
             #trigger game over, but this probably won't originate here depending on how we lay out the game loop
             pass
     
-    def attack(self, target: Enemy):
+    def basic_attack(self, target: Enemy):
         print("Attacking: " + str(target))
         target.take_damage(self.strength)
+        for i in range(5):
+                print('.')
+                time.sleep(0.5)
         print(target)
+
+    def special_attack(self, target: Enemy):
+        if self.mana >= self.special_attack_mana_cost:
+            print("Attacking: " + str(target))
+            target.take_damage(self.strength)
+            for i in range(5):
+                print('.')
+                time.sleep(0.5)
+            print(target)
+    
+    def heal(self):
+        self.health += 2 * self.intellect
