@@ -54,16 +54,26 @@ def game_loop(player: Player):
         dir = choose_direction()
 
         system('clear')
+        try:
+            next_room_code = map.cells[player.position[0] + dir[0]][player.position[1] + dir[1]]
+        except IndexError:
+            next_room_code = 'W'
 
-        next_room_code = map.cells[player.position[0] + dir[0]][player.position[1] + dir[1]]
-        next_room = room.Room(next_room_code, player)
+        chose_wall = False
 
-        map.cells[player.position[0]][player.position[1]] = '#'
-        player.move(dir)
-        map.cells[player.position[0]][player.position[1]] = 'P'
+        if next_room_code == 'W':
+            chose_wall = True
+            print('You cannot walk through walls...')
 
-        next_room.encounter.play_encounter()
-        system('clear')
+        if not chose_wall:
+            next_room = room.Room(next_room_code, player)
+
+            map.cells[player.position[0]][player.position[1]] = '#'
+            player.move(dir)
+            map.cells[player.position[0]][player.position[1]] = 'P'
+
+            next_room.encounter.play_encounter()
+            system('clear')
 
         game_loop(player)
 
