@@ -32,9 +32,10 @@ class EnemyEncounter(Encounter):
             self.enemy = enemy.Slime("Tom", 12, 3)
         
     def play_encounter(self):
-        print(f'\n\n{self.enemy}\n\n')
 
         while self.player.health > 0 and self.enemy.health > 0:
+            print(f'\n{self.enemy}\n')
+            print(f'\n{self.player}\n')
             player_choice = input('What will you do...\n1. Basic Attack\n2. Special Attack\n3. Heal\n')
 
             match player_choice:
@@ -44,3 +45,4 @@ class EnemyEncounter(Encounter):
                     self.player.special_attack(self.enemy)
                 case '3':
                     self.player.heal()
+            system('clear')

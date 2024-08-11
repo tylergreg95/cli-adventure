@@ -42,7 +42,6 @@ class Warrior(Player):
                 print('.')
                 time.sleep(0.5)
         system('clear')
-        print(target)
 
     def special_attack(self, target: Enemy):
         if self.mana >= self.special_attack_mana_cost:
@@ -53,7 +52,6 @@ class Warrior(Player):
                 print('.')
                 time.sleep(0.5)
             system('clear')
-            print(target)
         else:
             print("Not enough mana...")
     
