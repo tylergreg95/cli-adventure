@@ -1,6 +1,5 @@
 from time import sleep
 from os import system
-from player import Player
 
 class Enemy:
     def __init__(self, name : str, health : int, defense : int):
@@ -18,13 +17,14 @@ class Slime(Enemy):
     def __init__(self, name: str, health: int, defense: int):
         super().__init__(name, health, defense)
         self.enemy_type = "Slime"
-    
+        self.attack_power = 20
+
     def __repr__(self):
         return f'{self.name} the {self.enemy_type} | HP: {self.health} | DEF: {self.defense}'
     
-    def basic_attack(self, target: Player):
+    def basic_attack(self, target):
         print("Attacking: " + str(target))
-        target.take_damage(self.strength)
+        target.take_damage(self.attack_power)
         for i in range(5):
                 print('.')
                 sleep(0.5)
