@@ -1,4 +1,4 @@
-from player import Player, Warrior
+from player import Player, Warrior, Sorcerer
 from map import Map
 import room
 from os import system
@@ -7,8 +7,21 @@ map = Map()
 
 def initialize_game():
     player_name = input('Enter your character\'s name... ')
+    valid_class_selectors = ['1', '2', '3']
+    player_class = input('Select your class\n1. Warrior\n2. Sorcerer\n3. Rogue\n')
+    while player_class not in valid_class_selectors:
+        player_class = input('Select your class\n1. Warrior\n2. Sorcerer\n3. Rogue\n')
     system('clear')
-    player = Warrior(player_name, 10, 5, 6)
+
+    match player_class:
+        case '1':
+            player = Warrior(player_name, 10, 5, 6)
+        case '2':
+            player = Sorcerer(player_name, 7, 12, 7)
+        case '3':
+            print("Not implemented")
+            exit()
+
 
     
 
