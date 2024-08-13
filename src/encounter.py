@@ -46,3 +46,8 @@ class EnemyEncounter(Encounter):
                 case '3':
                     self.player.heal()
             system('clear')
+            if self.enemy.health > 0:
+                print(f'\n{self.enemy}\n')
+                print(f'\n{self.player}\n')
+
+                self.enemy.basic_attack(self.player)
