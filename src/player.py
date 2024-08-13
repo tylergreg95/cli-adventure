@@ -57,3 +57,49 @@ class Warrior(Player):
     
     def heal(self):
         self.health += 2 * self.intellect
+
+class Sorcerer(Player):
+    def __init__(self, name : str, strength : int, intellect : int, dexterity : int):
+        super().__init__(name)
+        self.class_name = "sorcerer"
+        self.strength = strength
+        self.intellect = intellect
+        self.dexterity = dexterity
+        self.health = (3 + strength) * 10
+        self.mana = (18 + self.intellect) * 10
+        self.critical_chance = float((1 + self.dexterity) * 1.2)
+        self.defense = (1 + self.strength)
+        self.special_attack_mana_cost = 20
+    
+    def __repr__(self) -> str:
+        return f'Name: {self.name} | Class: {self.class_name}\nSTR: {self.strength} | INT: {self.intellect} | DEX: {self.dexterity}\nHP: {self.health} | MP: {self.mana} | CRIT: {self.critical_chance}'
+    
+    
+    def take_damage(self, damage : int):
+        self.health -= (damage - self.defense)
+        if self.health <= 0:
+            #trigger game over, but this probably won't originate here depending on how we lay out the game loop
+            pass
+    
+    def basic_attack(self, target: Enemy):
+        print("Attacking: " + str(target))
+        target.take_damage(self.strength)
+        for i in range(5):
+                print('.')
+                time.sleep(0.5)
+        system('clear')
+
+    def special_attack(self, target: Enemy):
+        if self.mana >= self.special_attack_mana_cost:
+            self.mana -= self.special_attack_mana_cost
+            print("Attacking: " + str(target))
+            target.take_damage(self.strength + self.intellect)
+            for i in range(5):
+                print('.')
+                time.sleep(0.5)
+            system('clear')
+        else:
+            print("Not enough mana...")
+    
+    def heal(self):
+        self.health += 2 * self.intellect
