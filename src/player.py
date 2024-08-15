@@ -1,6 +1,14 @@
 from enemy import Enemy
 import time
 from os import system
+import random
+
+def roll_crit(crit_chance: float) -> bool:
+    roll = random.randint(0, 100)
+    print(roll)
+    if crit_chance >= roll:
+        return True
+    return False
 
 class Player:
     def __init__(self, name : str):
@@ -36,8 +44,13 @@ class Warrior(Player):
             pass
     
     def basic_attack(self, target: Enemy):
-        print("Attacking: " + str(target))
-        target.take_damage(self.strength)
+        is_crit = roll_crit(self.critical_chance)
+        if is_crit:
+            print("Critical Strike!\nAttacking: " + str(target))
+            target.take_damage(self.strength * 2)
+        else:
+            print("Attacking: " + str(target))
+            target.take_damage(self.strength)
         for i in range(5):
                 print('.')
                 time.sleep(0.5)
@@ -82,8 +95,13 @@ class Sorcerer(Player):
             pass
     
     def basic_attack(self, target: Enemy):
-        print("Attacking: " + str(target))
-        target.take_damage(self.strength)
+        is_crit = roll_crit(self.critical_chance)
+        if is_crit:
+            print("Critical Strike!\nAttacking: " + str(target))
+            target.take_damage(self.intellect * 2)
+        else:
+            print("Attacking: " + str(target))
+            target.take_damage(self.intellect)
         for i in range(5):
                 print('.')
                 time.sleep(0.5)
