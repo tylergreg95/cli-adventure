@@ -32,6 +32,7 @@ class Warrior(Player):
         self.critical_chance = float((1 + self.dexterity) * 1.2)
         self.defense = (3 + self.strength)
         self.special_attack_mana_cost = 20
+        self.is_alive = True
     
     def __repr__(self) -> str:
         return f'Name: {self.name} | Class: {self.class_name}\nSTR: {self.strength} | INT: {self.intellect} | DEX: {self.dexterity}\nHP: {self.health} | MP: {self.mana} | CRIT: {self.critical_chance}'
@@ -40,8 +41,7 @@ class Warrior(Player):
     def take_damage(self, damage : int):
         self.health -= (damage - self.defense)
         if self.health <= 0:
-            #trigger game over, but this probably won't originate here depending on how we lay out the game loop
-            pass
+            self.is_alive = False
     
     def basic_attack(self, target: Enemy):
         is_crit = roll_crit(self.critical_chance)
@@ -83,6 +83,7 @@ class Sorcerer(Player):
         self.critical_chance = float((1 + self.dexterity) * 1.2)
         self.defense = (1 + self.strength)
         self.special_attack_mana_cost = 20
+        self.is_alive = True
     
     def __repr__(self) -> str:
         return f'Name: {self.name} | Class: {self.class_name}\nSTR: {self.strength} | INT: {self.intellect} | DEX: {self.dexterity}\nHP: {self.health} | MP: {self.mana} | CRIT: {self.critical_chance}'
@@ -91,8 +92,7 @@ class Sorcerer(Player):
     def take_damage(self, damage : int):
         self.health -= (damage - self.defense)
         if self.health <= 0:
-            #trigger game over, but this probably won't originate here depending on how we lay out the game loop
-            pass
+            self.is_alive = False
     
     def basic_attack(self, target: Enemy):
         is_crit = roll_crit(self.critical_chance)
